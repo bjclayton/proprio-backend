@@ -1,0 +1,68 @@
+# Proprio Backend
+
+An application designed to simplify the process of renting and leasing properties in Haiti.
+
+## Technologies
+- **Backend Framework**: AdonisJs
+- **Database**: PostgreSQL, Redis
+- **Containerization**: Docker
+- **Deployment**: VPS Hostinger
+
+## Features
+- User authentication and management
+- Property listings with photos and descriptions
+- Message system for user communication
+- Advanced search and filtering for properties
+- User reviews and ratings for properties
+- Favorites management
+
+## Getting Started
+
+### Prerequisites
+Before you begin, ensure you have the following installed:
+- Node.js (v14.x or higher)
+- npm (v6.x or higher)
+- PostgreSQL
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/bjclayton/proprio-backend.git
+   cd proprio-backend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add your database and other configuration details.
+   ```env
+  TZ=UTC
+    PORT=3333
+    HOST=localhost
+    LOG_LEVEL=info
+    APP_KEY=
+    NODE_ENV=development
+    DB_HOST=127.0.0.1
+    DB_PORT=5432
+    DB_USER=postgres
+    DB_PASSWORD=
+    DB_DATABASE=
+    SESSION_DRIVER=cookie
+   ```
+
+4. Run database migrations and Seed data:
+   ```bash
+   node ace migration:run
+   node ace db:seed
+   ```
+
+### Running the Application
+1. Start the AdonisJs server:
+   ```bash
+   npm run dev
+   ```
+
+2. The API will be available at `http://localhost:3333/api`.
