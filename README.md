@@ -38,20 +38,6 @@ Before you begin, ensure you have the following installed:
 
 3. Set up environment variables:
    Create a `.env` file in the root directory and add your database and other configuration details.
-   ```bash
-   TZ=UTC
-   PORT=3333
-   HOST=localhost
-   LOG_LEVEL=info
-   APP_KEY=
-   NODE_ENV=development
-   DB_HOST=127.0.0.1
-   DB_PORT=5432
-   DB_USER=postgres
-   DB_PASSWORD=
-   DB_DATABASE=
-   SESSION_DRIVER=cookie
-   ```
 
 4. Run database migrations and Seed data:
    ```bash
