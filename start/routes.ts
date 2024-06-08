@@ -10,6 +10,9 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 const AuthController = () => import('#controllers/auth_controller')
+const UsersController = () => import('#controllers/users_controller')
+const ImagesController = () => import('#controllers/images_controller')
+const PropertiesController = () => import('#controllers/properties_controller')
 
 router.get('health', ({ response }) => response.noContent())
 
@@ -20,5 +23,23 @@ router.group(() => {
         router.post('/verify-email', [AuthController, 'verifyEmail'])
         router.post('/logout', [AuthController, 'logout']).use(middleware.auth())
     }).prefix('auth')
+
+    router
+        .resource('users', UsersController)
+        .use(
+            ['index', 'show', 'update', 'destroy'],
+            middleware.auth()
+        )
+
+    router
+        .resource('properties', PropertiesController)
+        .use(
+            ['store', 'update', 'destroy'],
+            middleware.auth()
+        )
+
+    router.group(() => {
+        router.get('/:type/*', [ImagesController, 'show'])
+    }).prefix('uploads')
 
 }).prefix('api')

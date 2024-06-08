@@ -14,7 +14,6 @@ export const registerUserValidator = vine.compile(
     })
 )
 
-
 export const verifyEmailValidator = vine.compile(
     vine.object({
         email: vine.string().trim().email(),

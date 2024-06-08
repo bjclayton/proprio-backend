@@ -32,7 +32,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare PhoneNumber: string
 
-  @column()
+  @column({serializeAs: null})
   declare OTP: string
 
   @column()

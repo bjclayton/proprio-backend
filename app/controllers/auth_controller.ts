@@ -11,7 +11,7 @@ export default class AuthController {
         try {
             const payload = await request.validateUsing(registerUserValidator)
 
-            await payload.avatar.move(app.makePath('uploads'), {
+            await payload.avatar.move(app.makePath('uploads/profiles'), {
                 name: `${cuid()}.${payload.avatar.extname}`
             })
 
