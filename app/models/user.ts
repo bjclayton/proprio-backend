@@ -6,6 +6,7 @@ import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Property from './property.js'
 import Favorite from './favorite.js'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
+import { DbRememberMeTokensProvider } from '@adonisjs/auth/session'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -32,10 +33,13 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare PhoneNumber: string
 
   @column()
-  declare OTP: number
+  declare OTP: string
 
   @column()
-  declare role: string
+  declare role: 'Locataire' | 'Propriétaire' | 'Admin'
+
+  @column()
+  declare isVerified: boolean;
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -48,4 +52,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @hasMany(() => Favorite)
   declare favorites: HasMany<typeof Favorite>
+
+  static rememberMeTokens = DbRememberMeTokensProvider.forModel(User)
 }

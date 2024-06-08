@@ -11,12 +11,13 @@ export default class extends BaseSchema {
       table.string('password').notNullable()
       table.string('avatar').notNullable()
       table.string('phone_number').notNullable().unique()
-      table.integer('otp').notNullable()
+      table.string('otp').notNullable()
       table.enu('role', ['Locataire', 'Propriétaire', 'Admin'], {
         useNative: true,
         enumName: 'user_role',
         existingType: true,
       }).notNullable()
+      table.boolean('is_verified').notNullable()
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
     })
