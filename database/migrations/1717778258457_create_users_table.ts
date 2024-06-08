@@ -5,11 +5,18 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').notNullable()
-      table.string('full_name').nullable()
+      table.increments('id').notNullable().primary()
+      table.string('full_name').notNullable()
       table.string('email', 254).notNullable().unique()
       table.string('password').notNullable()
-
+      table.string('avatar').notNullable()
+      table.string('phone_number').notNullable().unique()
+      table.integer('otp').notNullable()
+      table.enu('role', ['Locataire', 'Propriétaire', 'Admin'], {
+        useNative: true,
+        enumName: 'user_role',
+        existingType: true,
+      }).notNullable()
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()
     })
