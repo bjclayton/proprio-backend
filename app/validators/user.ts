@@ -10,6 +10,6 @@ export const updateUserValidator = vine.compile(
             extnames: ['jpg', 'png', 'jpeg']
         }).nullable(),
         PhoneNumber: vine.string().trim().mobile().minLength(8).maxLength(8).nullable(),
-        role: vine.string().trim().nullable(),
+        role: vine.enum(['User', 'Admin']).nullable(),
     })
 )

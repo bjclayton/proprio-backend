@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.string('avatar').notNullable()
       table.string('phone_number').notNullable().unique()
       table.string('otp').notNullable()
-      table.enu('role', ['Locataire', 'Propriétaire', 'Admin'], {
+      table.enu('role', ['User', 'Admin'], {
         useNative: true,
         enumName: 'user_role',
         existingType: true,

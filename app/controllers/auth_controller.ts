@@ -1,6 +1,5 @@
 import User from '#models/user';
-import { loginUserValidator } from '#validators/login';
-import { registerUserValidator, verifyEmailValidator } from '#validators/register';
+import { registerUserValidator, loginUserValidator, verifyEmailValidator } from '#validators/auth';
 import { cuid } from '@adonisjs/core/helpers';
 import type { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app';
@@ -22,7 +21,7 @@ export default class AuthController {
                 email: payload.email,
                 password: payload.password,
                 avatar: payload.avatar.fileName,
-                PhoneNumber: payload.PhoneNumber,
+                phoneNumber: payload.PhoneNumber,
                 OTP: otp,
                 role: payload.role,
                 isVerified: false
@@ -36,11 +35,11 @@ export default class AuthController {
                     .htmlView('emails/verify_email', { user })
             })
 
-            response
+            return response
                 .status(201)
                 .json({ message: "User successfully created" });
         } catch (error) {
-            response
+            return response
                 .status(422)
                 .json({
                     error: error
@@ -62,14 +61,14 @@ export default class AuthController {
                 user.isVerified = true;
                 await user.save();
 
-                response
+                return response
                     .status(200)
                     .json({ message: "OTP verified successfully." });
             } else {
-                response.status(400).json({ message: "Invalid OTP." });
+                return response.status(400).json({ message: "Invalid OTP." });
             }
         } catch (error) {
-            response.status(500).json({
+            return response.status(500).json({
                 message: "Error verifying OTP.",
                 error: error,
             });
@@ -91,7 +90,7 @@ export default class AuthController {
             )
 
         } catch (error) {
-            response
+            return response
                 .status(error.status)
                 .json({
                     message: error.name,
@@ -104,7 +103,7 @@ export default class AuthController {
             await auth.use('web').logout()
             return response.status(204)
         } catch (error) {
-            response
+            return response
                 .status(error.status)
                 .json({
                     message: error.name,

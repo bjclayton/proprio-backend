@@ -1,6 +1,6 @@
 import User from '#models/user'
 import UserPolicy from '#policies/user_policy';
-import { updateUserValidator } from '#validators/update_user';
+import { updateUserValidator } from '#validators/user';
 import type { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app';
 
@@ -89,7 +89,7 @@ export default class UsersController {
         email: payload.email,
         password: payload.password,
         avatar: payload.avatar?.fileName,
-        PhoneNumber: payload.PhoneNumber,
+        phoneNumber: payload.PhoneNumber,
         role: payload.role,
       }).save()
 

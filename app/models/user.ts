@@ -30,13 +30,13 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare avatar: string
 
   @column()
-  declare PhoneNumber: string
+  declare phoneNumber: string
 
-  @column({serializeAs: null})
+  @column({ serializeAs: null })
   declare OTP: string
 
-  @column()
-  declare role: 'Locataire' | 'Propriétaire' | 'Admin'
+  @column({ serializeAs: null })
+  declare role: 'User' | 'Admin'
 
   @column()
   declare isVerified: boolean;

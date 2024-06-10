@@ -10,7 +10,6 @@ export default class extends BaseSchema {
         .unsigned()
         .references('users.id')
         .onDelete('CASCADE')
-        .onUpdate('CASCADE')
         .notNullable()
       table.string('title').notNullable()
       table.text('description').nullable()
@@ -30,7 +29,6 @@ export default class extends BaseSchema {
       }).notNullable()
 
       table.integer('price').notNullable()
-      table.text('offers').notNullable()
       table.integer('num_living_rooms').notNullable()
       table.integer('num_bedrooms').notNullable()
       table.integer('num_bathrooms').notNullable()

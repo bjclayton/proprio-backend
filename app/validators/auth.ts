@@ -10,7 +10,14 @@ export const registerUserValidator = vine.compile(
             extnames: ['jpg', 'png', 'jpeg']
         }),
         PhoneNumber: vine.string().trim().mobile().minLength(8).maxLength(8),
-        role: vine.enum(['Locataire', 'Propriétaire', 'Admin']),
+        role: vine.enum(['User', 'Admin']),
+    })
+)
+
+export const loginUserValidator = vine.compile(
+    vine.object({
+        email: vine.string().trim().email(),
+        password: vine.string().trim(),
     })
 )
 

@@ -31,12 +31,15 @@ router.group(() => {
             middleware.auth()
         )
 
-    router
-        .resource('properties', PropertiesController)
-        .use(
-            ['store', 'update', 'destroy'],
-            middleware.auth()
-        )
+    router.group(() => {
+        router.get('/properties/filter', [PropertiesController, 'filter'])
+        router
+            .resource('properties', PropertiesController)
+            .use(
+                ['store', 'update', 'destroy'],
+                middleware.auth()
+            )
+    })
 
     router.group(() => {
         router.get('/:type/*', [ImagesController, 'show'])
