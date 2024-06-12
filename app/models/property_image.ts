@@ -11,10 +11,10 @@ export default class PropertyImage extends BaseModel {
   declare propertyId: number
 
   @column()
-  declare imageName: number
+  declare imageName: string
 
   @column()
-  declare isPrimary: number
+  declare isPrimary: boolean
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

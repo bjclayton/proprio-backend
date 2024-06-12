@@ -27,5 +27,5 @@ export default class Favorite extends BaseModel {
   declare property: BelongsTo<typeof Property>
 
   @belongsTo(() => User)
-  declare books: BelongsTo<typeof User>
+  declare user: BelongsTo<typeof User>
 }

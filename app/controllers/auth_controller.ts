@@ -11,7 +11,7 @@ export default class AuthController {
             const payload = await request.validateUsing(registerUserValidator)
 
             await payload.avatar.move(app.makePath('uploads/profiles'), {
-                name: `${cuid()}.${payload.avatar.extname}`
+                name: `${cuid()}.webp`
             })
 
             const otp = Math.floor(100000 + Math.random() * 900000).toString()
